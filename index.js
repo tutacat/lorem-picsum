@@ -45,12 +45,20 @@ function loremPicsum(opts) {
   // build the path array
   const path = [];
 
-  if (typeof opts === "undefined") {
+  if (typeof opts !== "object") {
     throw new Error("opts must be an object");
   }
 
   if (typeof opts.width !== "number") {
     throw new Error("opts.width must be a number");
+  }
+
+  if (opts.width && opts.width < 0 || opts.width > 5000) {
+    throw new Error("opts.width must be within 0 and 5000");
+  }
+
+  if (opts.height && opts.height < 0 || opts.height > 5000) {
+    throw new Error("opts.height must be within 0 and 5000");
   }
 
   if (opts.grayscale) {
